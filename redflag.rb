@@ -15,8 +15,8 @@ Dir.glob('*events.rb').each do |file|
 
   @events.each_pair do |name, event|
     env = Object.new
-puts "event.each_pair>>>#name: #{name}"
-puts "event.each_pair>>>#event: #{event}"
+#puts "event.each_pair>>>#name: #{name}"
+#puts "event.each_pair>>>#event: #{event}"
     @setups.each do |setup|
       env.instance_eval &setup
 puts  "setups.each>>>#setup: #{setup}"
