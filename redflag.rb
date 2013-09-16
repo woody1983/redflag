@@ -9,20 +9,21 @@ end
 Dir.glob('*events.rb').each do |file|
   @setups = []
   @events = {}
-#puts @setups.size
-  load file
-#puts @setups
 
+  load file
+
+  env = Object.new
+  
+  @setups.each {|setup| env.instance_eval &setup }
+    
   @events.each_pair do |name, event|
-    env = Object.new
-#puts "event.each_pair>>>#name: #{name}"
-#puts "event.each_pair>>>#event: #{event}"
-    @setups.each do |setup|
-      env.instance_eval &setup
-puts  "setups.each>>>#setup: #{setup}"
-    end
-    puts "ALTER: #{name}" if env.instance_eval &event
+    #env = Object.new
+    #@setups.each do |setup|
+    #  env.instance_eval &setup
+    #end
+    puts "[\033[1;31;40m ALTER \033[m]: #{name}" if env.instance_eval &event
   end
+
 end
 
 
